@@ -1,15 +1,21 @@
 #include <iostream>
 #include <vector>
+#include <limits>
 
 using namespace std;
 
 int main(){
     
     // To do 1: Wihile loop
-    vector<int> list{};
+    
+    // system("cls");
+    
+    vector<int> list_of_number{1, 2, 3, 4, 5};
     
     bool game_on = true;
     do {
+        
+        
         char choice{};
         cout << "================================" << endl;
         cout << "P - Print numbers" << endl;
@@ -20,28 +26,55 @@ int main(){
         cout << "Q - Quit" << endl;
         cout << "\nEnter your choice: ";
         cin >> choice;
+        cout << "\n\n\n";
         
         switch (choice) {
             case 'P':
             case 'p': {
-                cout << "P - PPPPPPPPP" << endl;
+                if (list_of_number.empty()){
+                    cout << "[] - the list is empty" << endl;
+                }
+                
+                else{
+                    cout << "All element in the list is: [ "; 
+                    for (unsigned int i = 0; i < list_of_number.size() ; i++)
+                        cout << list_of_number[i] << " ";
+                    cout << "]" << endl;
+                }
+                /* To do 3 : P - Print numbers
+                If the user enters 'P' or 'p', you should display all of the elements (ints) in the list.
+                If the list is empty you should display "[] - the list is empty"
+                If the list is not empty then all the list element should be displayed inside square brackets separated by a space. 
+                For example, [ 1 2 3 4 5 ] */
                 break;
-            /* To do 3 : P - Print numbers
-            If the user enters 'P' or 'p', you should display all of the elements (ints) in the list.
-            If the list is empty you should display "[] - the list is empty"
-            If the list is not empty then all the list element should be displayed inside square brackets separated by a space. 
-            For example, [ 1 2 3 4 5 ] */
             }
             
             case 'A':
             case 'a':{
-                cout << "A - AAAAAAAAA" << endl;
-                break;
+                int new_number{};
+                cout << "Plese enter number: ";
+                cin >> new_number;
+                
+                while (true){
+                    if (cin.fail()){
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "You have entered wrong input, please enter again: ";
+                        cin >> new_number;
+                    }
+                    if (!cin.fail()){
+                        cout <<  new_number << " added." << endl;
+                        list_of_number.push_back(new_number);
+                        cout << endl;
+                        break;
+                    }      
+                }
             /* To do 4: A - Add a number
             If the user enters 'A' or 'a' then you should prompt the user for an integer to add to the list 
             which you will add to the list and then display it was added. For example, if the user enters 5
             You should display, "5 added".
             Duplicate list entries are OK */
+                break;
             }
             
             case 'M':
@@ -82,17 +115,10 @@ int main(){
             }
             
             default: 
-                cout << "Unknown selection, please try again" << endl;
-            
-            
-            
-            
-            
+                cout << "Unknown selection, please try again \n\n";
         }
-    
-        
-    } while(game_on);
 
+    } while(game_on);
 
     /* To do 9: Additional functionality if you wish to extend this program.
 
