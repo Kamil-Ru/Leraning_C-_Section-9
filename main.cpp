@@ -10,7 +10,7 @@ int main(){
     
     // system("cls");
     
-    vector<int> list_of_number{1, 2, 3, 4, 5};
+    vector<int> list_of_number{1, 2, 3 ,4 ,5 };
     
     bool game_on = true;
     do {
@@ -79,7 +79,20 @@ int main(){
             
             case 'M':
             case 'm':{
-                cout << "M - MMMMMMMMM" << endl;
+                if (list_of_number.empty())
+                    cout << "Unable to calculate the mean - no data" << endl;
+                else {
+                    double sum_number {};
+                    double j{};
+                    
+                    for (unsigned i{0} ; i < list_of_number.size() ; i ++){
+                        sum_number += list_of_number[i];
+                        j++;
+                    }
+                    double average{sum_number/j};
+                    
+                    cout << "Average: " << average <<  endl;  
+                }
                 break;
             /* To do 5: M - Display mean of the numbers
             If the user enters 'M' or 'm'  you should calculate the mean or average of the elements in the list and display it.
@@ -88,7 +101,18 @@ int main(){
             
             case 'S':
             case 's':{
-                cout << "S - SSSSSSSSS" << endl;
+                if (list_of_number.empty())
+                    cout << "Unable to determine the smallest number - list is empty" << endl;
+                else {
+                    int smalest_number{list_of_number[0]};
+                    for (unsigned i = 0 ; i < list_of_number.size() ; i++){
+                        if (smalest_number > list_of_number[i])
+                            smalest_number = list_of_number[i];
+                        else
+                            continue;
+                    }
+                    cout << "The smallest number is " << smalest_number << endl;                    
+                }
                 break;
             /* To do 6: S - Display the smallest number
             If the user enters 'S' or 's' you should display the smallest element in the list.
@@ -98,7 +122,22 @@ int main(){
             
             case 'L':
             case 'l':{
-                cout << "L - LLLLLLLLLL" << endl;
+                if (list_of_number.empty())
+                    cout << "Unable to determine the largest number - list is empty" << endl;
+                else {
+                    int smalest_number{list_of_number[0]};
+                    for (unsigned i = 0 ; i < list_of_number.size() ; i++){
+                        if (smalest_number > list_of_number[i])
+                            smalest_number = list_of_number[i];
+                        else
+                            continue;
+                    }
+                    cout << "The largest number is " << smalest_number << endl;                    
+                }
+                break;               
+                
+                
+                
                 break;
             /* To do 7: L - Display the largest number
             If the user enters 'L' or 'l' you should display the largest element in the list
@@ -108,6 +147,7 @@ int main(){
             
             case 'Q':
             case 'q':{
+                cout << "Goodbye \n\n";
                 game_on = false;
                 break;
             /* To do 8:  Q - Quit
@@ -126,6 +166,6 @@ int main(){
         - clearing out the list (make it empty again) (Hint: the vector class has a .clear() method)
         - don't allow duplicate entries
         - come up with your own ideas! */
-    
+    // To do 10: test for double, float
     return 0;
 }
