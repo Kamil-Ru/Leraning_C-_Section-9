@@ -6,11 +6,9 @@ using namespace std;
 
 int main(){
     
-    vector<int> list_of_number{1, 2, 3 ,4 ,5 };
-    
-    bool game_on = true;
+    vector<int> list_of_number{1, 2, 3 , 4, 5};
+    char choice{}; 
     do {
-        char choice{};
         cout << "================================" << endl;
         cout << "P - Print numbers" << endl;
         cout << "A - Add a number" << endl;
@@ -35,13 +33,12 @@ int main(){
             For example, [ 1 2 3 4 5 ] */
             case 'P':
             case 'p': {
-                if (list_of_number.empty()){
+                if (list_of_number.empty())
                     cout << "[] - the list is empty" << endl;
-                } 
-                else{
+                else {
                     cout << "All element in the list is: [ "; 
-                    for (unsigned int i = 0; i < list_of_number.size() ; i++)
-                        cout << list_of_number[i] << " ";
+                    for (auto num: list_of_number)
+                        cout << num << " ";
                     cout << "]" << endl;
                 }
                 break;
@@ -85,19 +82,12 @@ int main(){
                 if (list_of_number.empty())
                     cout << "Unable to calculate the mean - no data" << endl;
                 else {
-                    double sum_number {};
-                    double j{};
-                    
-                    for (unsigned i{0} ; i < list_of_number.size() ; i ++){
-                        sum_number += list_of_number[i];
-                        j++;
-                    }
-                    double average{sum_number/j};
-                    
-                    cout << "Average: " << average <<  endl;  
+                    int sum_number {};                   
+                    for (auto num:list_of_number)
+                        sum_number += num;                   
+                    cout << "Average: " << static_cast<double>(sum_number)/list_of_number.size() << endl;
                 }
                 break;
-
             }
             
             //==============================================================================================            
@@ -110,17 +100,14 @@ int main(){
                 if (list_of_number.empty())
                     cout << "Unable to determine the smallest number - list is empty" << endl;
                 else {
-                    int smalest_number{list_of_number[0]};
-                    for (unsigned i = 0 ; i < list_of_number.size() ; i++){
-                        if (smalest_number > list_of_number[i])
-                            smalest_number = list_of_number[i];
-                        else
-                            continue;
+                    int smalest_number = list_of_number.at(0);
+                    for (auto num: list_of_number){
+                        if (smalest_number > num)
+                            smalest_number = num;
                     }
                     cout << "The smallest number is " << smalest_number << endl;                    
                 }
                 break;
-
             }
             
             //==============================================================================================
@@ -133,17 +120,14 @@ int main(){
                 if (list_of_number.empty())
                     cout << "Unable to determine the largest number - list is empty" << endl;
                 else {
-                    int largest_number{list_of_number[0]};
-                    for (unsigned i = 0 ; i < list_of_number.size() ; i++){
-                        if (largest_number < list_of_number[i])
-                            largest_number = list_of_number[i];
-                        else
-                            continue;
+                    int largest_number = list_of_number.at(0);
+                    for (auto num:list_of_number){
+                        if (largest_number < num)
+                            largest_number = num;
                     }
                     cout << "The largest number is " << largest_number << endl;                    
                 }
                 break;
- 
             }
             
             //==============================================================================================
@@ -159,10 +143,10 @@ int main(){
                 if (list_of_number.empty())
                         cout << "Unable to determine the largest number - list is empty" << endl;
                 else{
-                    for (unsigned i {0} ; i < list_of_number.size() ; i++){
-                        if (the_number_you_are_looking == list_of_number[i])
+                    for (auto num: list_of_number)
+                        if (the_number_you_are_looking == num)
                             amount_of_numbers++;
-                    }
+                    
                 }
                 cout << "Number " << the_number_you_are_looking << " occurrs " << amount_of_numbers << " times in the list." << endl;
                 break;
@@ -181,16 +165,18 @@ int main(){
             //==============================================================================================
             /* To do 8:  Q - Quit
             If the user enters 'Q' or 'q' then you should display 'Goodbye" and the program should terminate. */
+            
             case 'Q':
             case 'q':{
                 cout << "Goodbye \n\n";
-                game_on = false;
                 break;
             }
+
             default: 
                 cout << "Unknown selection, please try again \n\n";
+                 
         }
-    } while(game_on);
+    } while(choice != 'q' && choice != 'Q');
     
     return 0;
 }
